@@ -1,11 +1,12 @@
 class BaseItem:
-	isWeapon=False
+	isWeapon = False
 	name = "Item"
 	extraText = "Does something"
 
 	def use(self, target):
 		"""use the object on target"""
 		pass
+
 
 class Potion(BaseItem):
 	name = "Potion"
@@ -14,9 +15,10 @@ class Potion(BaseItem):
 
 	def __init__(self):
 		self.extraText = "replenish %s HP" % self.hp
-	
+
 	def use(self, target):
 		target.heal(self.hp)
+
 
 class SuperPotion(Potion):
 	name = "Super Potion"
