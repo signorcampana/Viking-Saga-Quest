@@ -70,7 +70,7 @@ class RPG:
 					self.exit()
 					break
 				elif res is RUN:
-					if random.choice([True, False, False]):
+					if random.choice([True, False]):
 						print("You got away!")
 						input()
 						return
