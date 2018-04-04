@@ -1,5 +1,5 @@
-from enemy import Enemy
-from weapon import Dagger
+from enemys import Enemy
+from weapons import Dagger
 
 
 class Player(Enemy):
@@ -9,8 +9,7 @@ class Player(Enemy):
 
     def __init__(self):
         self.weapon = Dagger()
-        #name = str(input("What is your name? "))
-        self.name = 'Gary'
+        self.name = input("What is your name? ")
         self.level = 4
         self.fixStats()
         self.hp = self.maxHp

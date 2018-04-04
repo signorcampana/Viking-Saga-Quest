@@ -13,7 +13,7 @@ class Enemy:
 	maxHp = 100
 	stat_defense = 0
 	stat_attack = 0
-	level = 2
+	level = 1
 	isPlayer = False
 	weapon = None
 
@@ -30,14 +30,14 @@ class Enemy:
 		level = self.level
 		if self.isPlayer:
 			level += 1
-		self.stat_attack = 40 / (level * 5)
-		self.stat_defense = 30 / (level * 5)
-		self.maxHp = 100 / (10 * (level - 1))
+		self.stat_attack = 40 + (level * 5)
+		self.stat_defense = 30 + (level * 5)
+		self.maxHp = 100 + (10 * (level + 1))
 
 	def hurt(self, amount):
 		"""hurts the object, removes damaged based on the object's
 		defense rating"""
-		amount -= (self.stat_defence / 2)
+		amount -= (self.stat_defense / 2)
 		self.hp -= amount
 		return self.hp
 
@@ -54,15 +54,16 @@ class Enemy:
 		self.hp += value
 		if self.hp > self.maxHp:
 			self.hp = self.maxHp
-		return self.hp - oldHp
+		return self.hp - oldHP
 
 	def think(self, target):
 		"""AI for the enemy"""
 		if self.hp < 0:
 			return																		# we can't think if we're dead
-		if ((self.hp/self.maxHp < 0.4) and (random.choice(True, False, False))):
+		if ((self.hp/self.maxHp < 0.4) and (random.choice([True, False]))):
 			amount = self.heal(self.level * 10)
-			print("Enemy used a healing potion, recovered %s HP!") % amount
+			print("Enemy used a healing potion, recovered ", amount, " HP!")
 		else:
 			damage = self.attack(target)
-			print("Enemy %s attacks, %s loses %s HP") % (self.name, target.name, damage)
+			#print(damage, target.name, self.name)
+			print("Enemy ", self.name, " attacks,", target.name, " loses ", damage, " HP")
